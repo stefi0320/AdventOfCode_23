@@ -3,21 +3,15 @@ import re
 import string
 
 string_to_digit = {
-   'twoneightwo': '2182',
-   "twoneight": '218',
-   'oneightwo': '182',
-   'eightwo': '82',
-   'oneight': '18',
-   "twone"  : '21',
-   'one':   '1',
-   'two':   '2',
-   'three': '3',
+   'one':   'o1e',
+   'two':   't2e',
+   'three': 't3e',
    'four':  '4',
-   'five':  '5',
+   'five':  '5e',
    'six':   '6',
-   'seven': '7',
-   'eight': '8',
-   'nine':  '9',
+   'seven': '7n',
+   'eight': 'e8t',
+   'nine':  'n9e',
 }
 
 def open_file_safely(file_name):
