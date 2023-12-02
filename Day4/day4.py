@@ -17,7 +17,8 @@ def open_file_safely(file_name):
         return None
    
 def day4():
-    """Day 4 of Advent o f code """
+   """Day 4 of Advent o f code """
+   
    # record start time
    start = time.time()
 
