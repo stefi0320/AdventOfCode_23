@@ -1,14 +1,16 @@
+"""Module providing a function reading files."""
 from pathlib import Path
 import re
 import time
 
 
 def open_file_safely(file_name):
+    """ File open """
     try:
         script_dir = Path(__file__).resolve().parent
         file_path = script_dir / file_name
 
-        with open(file_path, 'r') as file:
+        with open(file_path, 'r', encoding="utf-8") as file:
             content = file.readlines()
         return content
 
@@ -17,17 +19,19 @@ def open_file_safely(file_name):
         return None
 
 
-def possible_by_color(find, tmp_string, max):
+def possible_by_color(find, tmp_string, max_num):
+    """ Find impossible number of cubes """
     possible = True
     rx = r"(\d+) {}".format(find)
     result = re.search(rx, tmp_string)
     if result:
-        if int(result.group(1)) > max:
+        if int(result.group(1)) > max_num:
             possible = False
     return possible
 
 
 def min_by_color(find, tmp_string):
+    """ Find minimum number of cubes """
     min_num = 0
     rx = r"(\d+) {}".format(find)
     result = re.search(rx, tmp_string)
@@ -37,35 +41,36 @@ def min_by_color(find, tmp_string):
 
 
 def day2():
+    """Day 2 of Advent o f code """
     # record start time
     start = time.time()
 
-    input = open_file_safely("day2.txt")
+    input_txt = open_file_safely("day2.txt")
     sum_possible = 0
     sum_min = 0
 
-    for line in input:
+    for line in input_txt:
         line = line.strip()
         possible = True
         results = re.split('Game |:|;', line)
         # remove empty
         del results[0]
-        id = results[0]
+        idx = results[0]
         # remove id
         del results[0]
     # part1
         for result in results:
             possible = possible_by_color('blue', result, 14)
-            if False == possible:
+            if not possible:
                 break
             possible = possible_by_color('red', result, 12)
-            if False == possible:
+            if not possible:
                 break
             possible = possible_by_color('green', result, 13)
-            if False == possible:
+            if not possible:
                 break
         if possible:
-            sum_possible += int(id)
+            sum_possible += int(idx)
     # part2
         min_red = 1
         min_blue = 1

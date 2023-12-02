@@ -1,29 +1,32 @@
+"""Module providing a function reading files."""
 from pathlib import Path
 import time
 
 
 def open_file_safely(file_name):
+    """ File open """
     try:
         script_dir = Path(__file__).resolve().parent
         file_path = script_dir / file_name
 
-        with open(file_path, 'r') as file:
+        with open(file_path, 'r', encoding="utf-8") as file:
             content = file.readlines()
         return content
 
     except FileNotFoundError:
-        print(f"The file '{
-              file_name}' was not found in the same directory as the script.")
+        print("The file '{file_name}' was not found in the same directory as the script.")
         return None
 
 
 def day3():
+    """Day 3 of Advent o f code """
+
     # record start time
     start = time.time()
 
-    input = open_file_safely("day2.txt")
+    input_txt = open_file_safely("day2.txt")
 
-    for line in input:
+    for line in input_txt:
         line = line.strip()
 
     # part1

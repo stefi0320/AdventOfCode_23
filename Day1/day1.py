@@ -1,3 +1,4 @@
+"""Module providing a function reading files."""
 from pathlib import Path
 import re
 import time
@@ -16,39 +17,41 @@ string_to_digit = {
 
 
 def open_file_safely(file_name):
+    """ File open """
     try:
         script_dir = Path(__file__).resolve().parent
         file_path = script_dir / file_name
 
-        with open(file_path, 'r') as file:
+        with open(file_path, 'r', encoding="utf-8") as file:
             content = file.readlines()
         return content
 
     except FileNotFoundError:
-        print(f"The file '{
-              file_name}' was not found in the same directory as the script.")
+        print("The file '{file_name}' was not found in the same directory as the script.")
         return None
 
 
-def replaceToDigits(line):
+def replace_to_digits(line):
+    """ Replace text to digit """   
     for key, value in string_to_digit.items():
         line = line.replace(key, value)
     return line
 
 
 def day1():
+    """Day 1 of Advent o f code """
     # record start time
     start = time.time()
 
-    input = open_file_safely("day1.txt")
-    sum = 0
+    input_txt = open_file_safely("day1.txt")
+    sum_num = 0
 
-    for line in input:
-        tmp_line = replaceToDigits(line)
+    for line in input_txt:
+        tmp_line = replace_to_digits(line)
         digits = re.findall("\d", tmp_line)
         num = digits[0] + digits[-1]
-        sum += int(num)
-    print(sum)
+        sum_num += int(num)
+    print(sum_num)
 
     # record end time
     end = time.time()
