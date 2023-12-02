@@ -15,10 +15,10 @@ def open_file_safely(file_name):
     except FileNotFoundError:
         print("The file '{file_name}' was not found in the same directory as the script.")
         return None
-   
+
 def day4():
    """Day 4 of Advent o f code """
-   
+
    # record start time
    start = time.time()
 
