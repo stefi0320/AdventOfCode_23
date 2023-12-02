@@ -1,5 +1,6 @@
 from pathlib import Path
 import re
+import time
 
 def open_file_safely(file_name):
    try:
@@ -32,9 +33,13 @@ def min_by_color(find, tmp_string):
    return min_num
 
 def day2():
+   # record start time
+   start = time.time()
+
    input = open_file_safely("day2.txt")
    sum_possible = 0
    sum_min = 0
+
    for line in input:
       line = line.strip()
       possible = True
@@ -69,7 +74,12 @@ def day2():
          tmp_min = min_by_color('green', result)
          min_green = tmp_min if tmp_min > min_green else min_green
       sum_min += min_blue*min_red*min_green
+      
    print("Part1: " + str(sum_possible))
    print("Part2: " + str(sum_min))
+
+   # record end time
+   end = time.time()
+   print("Runtime :", (end-start) * 10**3, "ms")
 
 day2()

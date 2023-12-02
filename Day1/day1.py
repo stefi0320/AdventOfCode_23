@@ -1,6 +1,6 @@
 from pathlib import Path
 import re
-import string
+import time
 
 string_to_digit = {
    'one':   'o1e',
@@ -33,8 +33,10 @@ def replaceToDigits(line):
    return line
 
 def day1():
-   input = open_file_safely("day1.txt")
+   # record start time
+   start = time.time()
 
+   input = open_file_safely("day1.txt")
    sum = 0 
 
    for line in input:
@@ -43,5 +45,9 @@ def day1():
       num = digits[0] + digits[-1]
       sum += int(num)
    print(sum)
+
+   # record end time
+   end = time.time()
+   print("Runtime :", (end-start) * 10**3, "ms")
 
 day1()
