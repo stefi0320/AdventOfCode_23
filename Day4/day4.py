@@ -14,7 +14,7 @@ def open_file_safely(file_name):
       print(f"The file '{file_name}' was not found in the same directory as the script.")
       return None
    
-def day2():
+def day4():
    # record start time
    start = time.time()
 
@@ -31,4 +31,4 @@ def day2():
    end = time.time()
    print("Runtime :", (end-start) * 10**3, "ms")
 
-day2()
+day4()
