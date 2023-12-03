@@ -45,10 +45,7 @@ def find_neighbours(tmp_array, row, col, symbol, part2):
                 item = find_numbers(tmp_array[row + idx[0]], row + idx[0], col + idx[1], tmp_array.shape[1]-1, col, row)
                 digit = ''
                 for i in range(item[1]-item[0]+1):
-                    #if tmp_array[row + idx[0],i+item[0]] not in special_chars:
                         digit += tmp_array[row + idx[0],i+item[0]]
-                   # else:
-                        #print(tmp_array[row + idx[0],i+item[0]])
                 if row + idx[0] == prev_row:
                     if digit not in nums:
                         nums.append(digit)
