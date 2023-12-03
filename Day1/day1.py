@@ -39,7 +39,7 @@ def replace_to_digits(line):
 
 
 def day1():
-    """Day 1 of Advent o f code """
+    """Day 1 of Advent of code """
     # record start time
     start = time.time()
 

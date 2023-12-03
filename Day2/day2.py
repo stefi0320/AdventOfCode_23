@@ -75,6 +75,7 @@ def day2():
         min_red = 1
         min_blue = 1
         min_green = 1
+              
         for result in results:
             tmp_min = min_by_color('blue', result)
             min_blue = tmp_min if tmp_min > min_blue else min_blue
@@ -82,7 +83,8 @@ def day2():
             min_red = tmp_min if tmp_min > min_red else min_red
             tmp_min = min_by_color('green', result)
             min_green = tmp_min if tmp_min > min_green else min_green
-        sum_min += min_blue*min_red*min_green
+        sum_min += min_blue*min_red*min_green 
+
 
     print("Part1: " + str(sum_possible))
     print("Part2: " + str(sum_min))
