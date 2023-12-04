@@ -2,6 +2,7 @@
 from pathlib import Path
 import time
 import numpy as np
+import re
 
 special_chars = {
     '@',
@@ -42,16 +43,16 @@ def find_neighbours(tmp_array, row, col, symbol, part2):
         if ((row + idx[0] < tmp_array.shape[0]-1)  or (row + idx[0] > 0)) and ((col + idx[1] > 0)  or (col + idx[1] <  tmp_array.shape[1]-1)):
             if tmp_array[row + idx[0],col + idx[1]] != '.' and  tmp_array[row + idx[0],col + idx[1]] != symbol:
                 #number found
-                item = find_numbers(tmp_array[row + idx[0]], row + idx[0], col + idx[1], tmp_array.shape[1]-1, col, row)
-                digit = ''
-                for i in range(item[1]-item[0]+1):
-                        digit += tmp_array[row + idx[0],i+item[0]]
-                if row + idx[0] == prev_row:
-                    if digit not in nums:
-                        nums.append(digit)
-                else:
-                    nums.append(digit)
-                prev_row = row + idx[0]               
+                tmp_row = ''.join(str(x) for x in tmp_array[row + idx[0]])
+                tmp = re.finditer("\d+", tmp_row)
+                for t in tmp:
+                    if t.start() <= col + idx[1] and col + idx[1]<= t.end():
+                        if row + idx[0] == prev_row:
+                            if t.group() not in nums:
+                                nums.append(t.group())
+                        else:
+                            nums.append(t.group())
+                prev_row = row + idx[0]              
     if part2 and len(nums) == 2:
         sum_part = int(nums[0]) * int(nums[1])
     if not part2:
@@ -59,52 +60,6 @@ def find_neighbours(tmp_array, row, col, symbol, part2):
             sum_part += int(i)
 
     return sum_part
-    
-    
-def find_numbers(row, row_id, col_id, length, symbol_col, symbol_row):
-    """ Find number near id """
-    point_index = np.where(row == '.')
-    start_point = 0
-    end_point = 0
-    if symbol_row != row_id:
-        if col_id < point_index[0][0]:
-            start_point = 0
-            end_point = point_index[0][0] - 1
-        elif col_id > point_index[0][-1]:
-            start_point = point_index[0][-1] + 1
-            end_point = length
-        else:
-            for i in enumerate(point_index[0]):
-                if i[1] > col_id:
-                    start_point = point_index[0][i[0]-1] + 1
-                    end_point = i[1] - 1
-                    break
-    else:
-        if col_id < point_index[0][0]:
-            if col_id < symbol_col:
-                start_point = 0
-                end_point = point_index[0][0] - 2
-            else:
-                start_point = 1
-                end_point = point_index[0][0] - 1
-        elif col_id > symbol_col > point_index[0][-1]:
-            start_point = point_index[0][-1] + 2
-            end_point = length
-        elif col_id > point_index[0][-1]:
-            start_point = point_index[0][-1] + 1
-            end_point = length -1
-        else:
-            for i in enumerate(point_index[0]):
-                if i[1] > col_id:
-                    if symbol_col > col_id:
-                        start_point = point_index[0][i[0]-1] + 1
-                        end_point = symbol_col - 1
-                    else:
-                        start_point = symbol_col + 1
-                        end_point = i[1] - 1
-                    break
-    point_array = [start_point, end_point]
-    return point_array
 
 def day3():
     """Day 3 of Advent o f code """
