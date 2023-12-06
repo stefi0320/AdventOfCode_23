@@ -133,5 +133,4 @@ def day5():
     #record end time
     end = time.time()
     print("Runtime :", (end-start) * 10**3, "ms")
-    
 day5()
