@@ -23,6 +23,7 @@ def nth_pascal(n):
     return row    
     
 def day9():
+    """Day 9 of Advent of code """
     # record start time
     start = time.time()
     
