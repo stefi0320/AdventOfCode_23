@@ -42,6 +42,7 @@ def day11():
     for i, item in enumerate(col_empty):
         if item:
             empty_cols.append(i)
+            
     #part 1 expand by 1
     expanded_points = []
     for point in galaxy_points:
@@ -55,6 +56,7 @@ def day11():
         sum_of_shortest += abs(pair[0][0] -pair[1][0]) + abs(pair[0][1] -pair[1][1])
 
     print('Part 1:', sum_of_shortest)
+    
     #part 2 expand by 1milion
     m_expanded_points = []
     for point in galaxy_points:
