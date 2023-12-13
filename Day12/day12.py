@@ -33,7 +33,7 @@ def arrangements(input_line: str, *res: re.Pattern):
     return matches   
     
 def day12():
-    """Day 11 of Advent of code """
+    """Day 12 of Advent of code """
     # record start time
     start = time.time()
     input_txt = open_file_safely("day12.txt")
