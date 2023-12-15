@@ -116,14 +116,11 @@ def day13():
     print('Part 1:', sum_mirrored)
     sum_smudge = 0
     for i, pattern in enumerate(patterns):
-        found = foundcols[i] if foundcols[i]!= 0 else foundrows[i]
         tmp = find_copytwo(pattern, foundrows[i])
         if tmp == 0:
             temp = find_copytwo(transposed_patterns[i], foundcols[i])
-            print('column ', temp, 'original', found)
             sum_smudge += temp
         else:
-            print('row ', tmp, 'original', found)
             sum_smudge += 100 * tmp
     
     print('Part 2:', sum_smudge)
